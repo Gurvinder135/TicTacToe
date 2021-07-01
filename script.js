@@ -40,11 +40,17 @@ let gameboard = (function () {
 
 function player() {
     let b = "";
+    let name="";
     return {
         mark: function (a) {
             b = a;
         },
-
+        name:function(n){
+            name=n;
+        },
+        getname: function(){
+            return name;
+        },
         getmark: function () {
             return b;
         },
@@ -58,7 +64,7 @@ let result=(function () {
         element.addEventListener("click", function () {
             let id = element.id;
             if (document.getElementById(`${id}`).textContent) {
-                alert("try again")
+                alert("Please only select empty box")
             } else {
                 if (turn === 0) {
                     turn = 1;
@@ -74,9 +80,9 @@ let result=(function () {
 
     function turnFunc(){
         if(turn===0){
-            document.getElementById("turn").textContent="Player 1 Turn"
+            document.getElementById("turn").textContent=`${player1.getname()}'s turn`;
         } else{
-            document.getElementById("turn").textContent="Player 2 Turn"
+            document.getElementById("turn").textContent=`${player2.getname()}'s turn`
         }
     }
     function a(id, b) {
@@ -93,12 +99,12 @@ let result=(function () {
             turn=0;
         } else if(turn===1){
             document.getElementById("win").classList.remove("hide");
-            document.getElementById("win").textContent="Player 1 wins"
+            document.getElementById("win").textContent=`Congratulations! ${player1.getname()}, You won the Game.`
             document.getElementById("turn").classList.add("hide");
             turn=0;
         } else{
             document.getElementById("win").classList.remove("hide");
-            document.getElementById("win").textContent="Player 2 wins"
+            document.getElementById("win").textContent=`Congratulations! ${player2.getname()}, You won the Game.`
             document.getElementById("turn").classList.add("hide");
             turn=0;
         }
@@ -111,7 +117,19 @@ player1.mark("X");
 let player2 = player();
 player2.mark("O");
 
-
+(function(){
+document.querySelector("form").addEventListener("submit", function(e){
+    e.preventDefault();
+    document.querySelector(".flex").classList.remove("hide");
+    document.querySelector(".form").classList.add("hide");
+    let first=document.getElementById("first").value;
+    player1.name(first);
+    let second=document.getElementById("second").value;
+    player2.name(second);
+    document.getElementById("first").value="";
+    document.getElementById("second").value="";
+})
+})()
 
 
 

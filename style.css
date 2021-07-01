@@ -3,7 +3,24 @@
     font-family: 'Roboto', sans-serif;
     background-color: rgb(238, 238, 183);
 }
-.flex{
+.form{
+    margin: 6vw;
+    text-align: center;
+}
+label, input{
+    font-size: 2.5vw;
+    display: block;
+    color: rgb(31, 24, 41);
+   
+    border-radius: 10px;
+}
+input{
+    margin: 4px auto 34px;
+    background-color: #151815;
+    color: white;
+    padding: 13x;
+}
+.flex {
     display: flex;
     flex-direction: column;
 }
